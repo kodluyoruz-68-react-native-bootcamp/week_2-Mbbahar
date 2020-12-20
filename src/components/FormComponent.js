@@ -4,47 +4,25 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  StyleSheet,
-  Dimensions,
 } from 'react-native';
+
+import {formcomponent_style } from "../styles/todo_style";
 
 function FormComponent({onCart}) {
   const [todoItem, setTodoItem] = useState('');
   return (
-    <View style={styles.cartButtonContainer}>
+    <View style={formcomponent_style.cartButtonContainer}>
       <TextInput
         testID="input"
-        style={styles.TextInputStyle}
-        placeholder="What are we doing today?"
+        style={formcomponent_style.TextInputStyle}
+        placeholder= "What are we doing today?"
         placeholderTextColor="#f5f5f5"
         onChangeText={(todo) => setTodoItem(todo)}></TextInput>
       <TouchableOpacity testID="button" onPress={() => onCart(todoItem)}>
-        <Image source={require('../assets/add.png')} style={styles.cartIcon} />
+        <Image source={require('../assets/add.png')} style={formcomponent_style.cartIcon} />
       </TouchableOpacity>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  cartButtonContainer: {
-    position: 'absolute',
-    width: Dimensions.get('window').width,
-    flexDirection: 'row',
-    backgroundColor: '#ff9e80',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    alignSelf: 'center',
-    bottom: 0,
-    padding: 20,
-  },
-  TextInputStyle: {
-    flex: 1,
-    fontSize: 17,
-    color: '#fff',
-  },
-  cartIcon: {
-    width: 45,
-    height: 45,
-    tintColor: 'white',
-  },
-});
+
 export {FormComponent};

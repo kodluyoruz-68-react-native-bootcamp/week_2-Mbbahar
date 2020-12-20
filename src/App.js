@@ -11,6 +11,7 @@ import {FormComponent} from './components';
 
 function App() {
   const [toDoList, settoDoList] = useState([]);
+  const [counter, setCounter] = useState(toDoList.length);
   const rendertoDo = ({item}) => (
     <ToDoCard toDo={item} onDelete={deleteToItem} onIsDone={updateToItem} />
   );
@@ -39,6 +40,10 @@ function App() {
       ...toDoList.map((item) => (item.id == id ? changedToDo : item)),
     ]);
   }
+  useEffect(() => {
+    const counter = toDoList.filter((item) => item.isDone !== true);
+    setCounter(counter.length);
+  }, [toDoList]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,7 +58,7 @@ function App() {
             TODO
           </Text>
           <Text style={{fontSize: 30, fontWeight: 'bold', color: '#ff9e80'}}>
-            {toDoList.length}
+            {counter}
           </Text>
         </View>
         <FlatList
